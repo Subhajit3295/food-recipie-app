@@ -3,8 +3,8 @@ import { NavLink } from 'react-router-dom'
 
 const Navbar = () => {
     return (
-        <nav className='Navbar fixed top-0 w-[100%] border-1 h-[8vh] md:h-[10vh] aspect-auto flex justify-between px-2 items-center backdrop-blur-2xl z-[10000]'>
-            <h1 className='font-bold font text-2xl'>MyKitchen</h1>
+        <nav className='Navbar fixed top-0 w-[100%] h-[8vh] md:h-[10vh] aspect-auto flex justify-between px-2 items-center backdrop-blur-2xl z-[10000]'>
+            <h1 className='font-bold font text-2xl md:text-3xl'>MyKitchen</h1>
             <div className=" sm:flex items-center gap-2 md:gap-3 xl:gap-6 2xl:gap-10 hidden">
                 <NavLink to="/" className={(e) => { return e.isActive ? 'underline underline-offset-8' : 'hover:underline hover:underline-offset-8' }}>Home</NavLink>
                 <NavLink to="/Recipes" className={(e) => { return e.isActive ? 'underline underline-offset-8' : 'hover:underline hover:underline-offset-8' }}>Recipies</NavLink>
