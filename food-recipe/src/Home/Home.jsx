@@ -12,20 +12,31 @@ import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 
+
+const doYouknowUrl = "https://dummyjson.com/c/91e1-e265-45d4-b879";
+const recipeUrl = "https://dummyjson.com/recipes";
+
 const Home = () => {
 
-  const [tips, setTips] = useState([])
-
-  const url = "https://dummyjson.com/c/91e1-e265-45d4-b879";
-
+  const [tips, setTips] = useState([]);
+  const [recipes, SetRecipes] = useState([]);
   useEffect(() => {
-    axios.get(url)
-      .then((response) => { setTips(response.data); console.log(tips) })
+    axios.get(doYouknowUrl)
+      .then((response) => { setTips(response.data)})
       .catch((error) => {
         console.error("unable to fetch", error)
       });
 
   }, [])
+
+  useEffect (()=> {
+    axios.get(recipeUrl) 
+    .then((response)=> {
+      SetRecipes(response.data.recipes.slice(0, 5));
+    }) 
+  }, [])
+
+
 
 
 
@@ -74,7 +85,7 @@ const Home = () => {
           <h1 className='heading p-5 text-4xl text-center md:text-5xl font-bold md:text-center'>Recipe Collection</h1>
           <h2 className='subheading my-2 text-center w-[90%] text-xl md:text-2xl text-gray-500'>From quick weeknight dinners to elaborate weekend projects, we have recipes to fit every lifestyle and taste</h2>
           <div className="swiper-outer w-[70%] m-auto mt-0">
-            <div className="swipe m-auto">
+            <div className="swipe m-auto ">
               <Swiper
                 breakpoints={{
                   // When the viewport is 390px or smaller
@@ -94,20 +105,26 @@ const Home = () => {
                   },
                 }}
               >
-                <SwiperSlide className="h-[100%]">
-                  <div className="h-[45vh] md:h-[35vh] lg:h-[40vh] 2xl:h-[350px] 2xl:w-[80%]  lg:w-[90%] w-[100%] border-1 border-gray-400 rounded-xl justify-between flex flex-col p-4">
-                    <div className="img w-[100%] h-[50%] border-1 overflow-hidden rounded-xl">
-                      <img src={img1} alt="" className='h-[100%] w-[100%]' />
-                    </div>
-                    <div id="title">
-                      <p className='text-xl font-bold'>Title</p>
-                      <p className='description text-gray-600 text-md'>Description</p>
-                    </div>
-                    <div id="cardbutton">
-                      <button className='p-2 bg-yellow-400 w-[100%] rounded-md'>See full details</button>
-                    </div>
-                  </div>
-                </SwiperSlide>
+                {recipes.map((recipe) => {
+  return (
+    <SwiperSlide className="h-[100%]" key={recipe.id}>
+      <div className="h-[45vh] max-lg:h-[350px] md:h-[35vh] lg:h-[350px] 2xl:h-[350px] 2xl:w-[80%] lg:w-[90%] w-[100%] border-1 border-gray-400 rounded-xl justify-between flex flex-col p-4 hover:bg-yellow-100">
+        <div className="img w-[100%] h-[50%] border-1 overflow-hidden rounded-xl">
+          <img src={recipe.image} alt="" className='h-[100%] w-[100%]' />
+        </div>
+        <div id="title">
+          <p className='text-xl font-bold'>{recipe.name}</p>
+          <p className='description text-gray-600 text-md'>{recipe.tags[0]}, {recipe.tags[1]}</p>
+        </div>
+        <div id="cardbutton">
+          <button className='p-2 bg-yellow-400 w-[100%] rounded-md'>See full details</button>
+        </div>
+      </div>
+    </SwiperSlide>
+  );
+})}
+                
+
               </Swiper>
             </div>
           </div>
