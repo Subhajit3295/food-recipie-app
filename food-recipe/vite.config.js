@@ -4,5 +4,8 @@ import tailwindcss from '@tailwindcss/vite'
 
 // https://vite.dev/config/
 export default defineConfig({
+  server: {
+    allowedHosts: ['1d1a-152-58-179-204.ngrok-free.app'],
+  },
   plugins: [ tailwindcss(), react()],
 })
