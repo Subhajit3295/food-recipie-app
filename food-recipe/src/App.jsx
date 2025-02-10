@@ -2,6 +2,7 @@ import {createBrowserRouter, RouterProvider} from 'react-router-dom'
 import './App.css'
 import Navbar from './Navbar/Navbar'
 import Home from './Home/Home'
+import Recipies from './Recipes/Recipies'
 
 
 function App() {
@@ -12,7 +13,7 @@ function App() {
     },
     {
       path: '/Recipes',
-      element: <><Navbar/></>
+      element: <><Navbar/> <Recipies/> </>
     },
     {
       path: '/Contact-Us',
