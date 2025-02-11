@@ -2,7 +2,7 @@
 
 const CategoryCard = (props) => {
     return (
-        <div className="max-w-sm rounded-2xl overflow-hidden shadow-lg bg-white p-4" key={props.key}>
+        <div className="max-w-sm rounded-2xl overflow-hidden shadow-lg bg-white active:bg-orange-400 active:text-white duration-100 hover:text-white hover:bg-orange-400 focus:bg-orange-500 p-4" key={props.key}>
             <img className="w-full h-48 object-cover rounded-xl" src={props.img} alt='' />
             <div className="py-4">
                 <h2 className="text-xl font-bold text-gray-800">{props.recipeName}</h2>
