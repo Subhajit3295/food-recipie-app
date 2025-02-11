@@ -56,19 +56,12 @@ const Recipies = () => {
       });
   };
 
-
-
-
-
-
-
-
   return (
     <div className="relative top-[8vh] md:top-[10vh] flex flex-col h-[100vh]">
-      <div className="search absolute top-0 p-3 flex gap-2 w-[100%]" style={{
+      <div className="search absolute top-0 p-3 flex justify-center gap-2 w-[100%]" style={{
         scrollbarWidth: "none"
       }}>
-        <input type="text" id="search" placeholder="Dal fry..." className="outline-1 w-[100%] p-2 rounded-2xl" />
+        <input type="text" id="search" placeholder="Chicken..." className="outline-1 w-[100%] p-2 rounded-2xl md:w-[70%] lg:w-[40%]" />
         <button className="p-2 bg-amber-400 rounded-full flex items-center" onClick={searchMeal}><box-icon name='search' color="white"></box-icon></button>
       </div>
 
@@ -79,7 +72,7 @@ const Recipies = () => {
           )
         })}
       </div>
-      <div id="recipecard" className="relative top-[8vh] mt-5 grid grid-cols-1 gap-5 m-auto h-auto">
+      <div id="recipecard" className="relative top-[8vh] mt-5 flex flex-col md:flex-row flex-wrap justify-center gap-5 m-auto h-auto">
         <p id="show" className="text-red-500 hidden">Error</p>
         {meal.length > 0 &&
           meal.map((showMeal) => (

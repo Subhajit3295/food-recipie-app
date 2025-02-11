@@ -3,6 +3,7 @@ import './App.css'
 import Navbar from './Navbar/Navbar'
 import Home from './Home/Home'
 import Recipies from './Recipes/Recipies'
+import ContactUs from './Contact US/Contact Us'
 
 
 function App() {
@@ -17,7 +18,7 @@ function App() {
     },
     {
       path: '/Contact-Us',
-      element: <><Navbar/></>
+      element: <><Navbar/> <ContactUs/> </>
     },
   ])
 
