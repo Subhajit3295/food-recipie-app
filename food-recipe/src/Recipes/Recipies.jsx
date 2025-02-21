@@ -14,7 +14,7 @@ const Recipies = () => {
     axios.get(urlRandom)
       .then((response) => {
         setRandomRecipe(response.data.meals)
-        console.log(response.status)
+        // console.log(response.status)
       })
       .catch((error) => {
         console.error('netwrok error', error);
