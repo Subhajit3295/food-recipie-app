@@ -3,14 +3,13 @@ import axios from "axios";
 import RecipeCard from "./recipecard";
 import CategoryCard from "./Categorycard";
 
-
 const showError = document.getElementById('show');
-
 
 const Recipies = () => {
   const urlRandom = "https://www.themealdb.com/api/json/v1/1/filter.php?a=Indian"
   const [randomRecipe, setRandomRecipe] = useState([]);
   const [meal, updateMeal] = useState([]);
+  
   useEffect(() => {
     axios.get(urlRandom)
       .then((response) => {
@@ -20,6 +19,15 @@ const Recipies = () => {
       .catch((error) => {
         console.error('netwrok error', error);
       })
+  }, []);
+
+  useEffect(() => {
+    const input = document.getElementById('search');
+    input.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter') {
+        searchMeal();
+      }
+    });
   }, []);
 
   const searchMeal = () => {
@@ -34,7 +42,7 @@ const Recipies = () => {
       hideRecipeCard.classList.add('hidden');
 
       return; // Avoid empty search
-    }else {
+    } else {
       hideRecipeCard.classList.remove('hidden');
     }
 
@@ -48,11 +56,10 @@ const Recipies = () => {
         } else {
           updateMeal([]); // Set empty array if no meals found
           showError.innerText = `Cannot find ${inputValue}`;
-
         }
       })
       .catch((response) => {
-        console.error(response.status ,"unable to fetch");
+        console.error(response.status, "unable to fetch");
       });
   };
 
@@ -62,7 +69,7 @@ const Recipies = () => {
         scrollbarWidth: "none"
       }}>
         <input type="text" id="search" placeholder="Chicken..." className="outline-1 w-[100%] p-2 rounded-2xl md:w-[70%] lg:w-[40%]" />
-        <button className="p-2 bg-amber-400 rounded-full flex items-center" onClick={searchMeal}><box-icon name='search' color="white"></box-icon></button>
+        <button id="search-button" type="submit" className="p-2 bg-amber-400 rounded-full flex items-center hover:cursor-pointer" onClick={searchMeal}><box-icon name='search' color="white"></box-icon></button>
       </div>
 
       <div id="category-card" className="relative top-[8vh] mt-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 m-auto h-auto">
