@@ -5,15 +5,26 @@ phases:
     runtime-versions:
       nodejs: 18
     commands:
+      - echo Entering project folder...
+      - cd food-recipe
       - echo Installing dependencies...
       - npm install
 
+  pre_build:
+    commands:
+      - echo Running pre-build tasks...
+      - npm run lint || echo "Linting failed but continuing..."
+
   build:
     commands:
-      - echo Building the React + Vite app...
+      - echo Building the project...
       - npm run build
+
+  post_build:
+    commands:
+      - echo Build completed successfully.
 
 artifacts:
   files:
     - '**/*'
-  base-directory: dist
+  base-directory: food-recipe/dist

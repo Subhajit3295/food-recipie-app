@@ -9,6 +9,7 @@ import ContactUs from './Contact US/Contact Us'
 function App() {
   const router = createBrowserRouter([
     {
+      index: true,
       path: '/',
       element: <><Navbar/> <Home/> </>
     },
